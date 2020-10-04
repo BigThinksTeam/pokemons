@@ -20,7 +20,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (\Auth::attempt($credentials, true)) {
-            return view('only_pokemon' ,['pokemon' => $pokemon]);
+            return view('pokemons');
         } else {
             return response()->json([
                 'errors' => ['errors' => "Credentials not match"],
