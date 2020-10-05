@@ -15,10 +15,14 @@
         <form method="POST" action="/Login" enctype="multipart/form-data" class="d-flex flex-column border border-danger p-4">
             @csrf
             <div class="d-flex flex-column border-danger">
-                <span>Email:</span>
-                <input class="form-control my-3" name="email" type="email" placeholder="Type Email">
-                <span>Password:</span>
-                <input class="form-control" name="password" type="password" placeholder="Type Password">
+                <div>
+                    <span>Email:</span>
+                    <input class="form-control" name="email" type="email" placeholder="Type Email">
+                </div>
+                <div class="my-3">
+                    <span>Password:</span>
+                    <input class="form-control" name="password" type="password" placeholder="Type Password">
+                </div>
             </div>
             <div class="d-flex justify-content-center my-2">
                 <button type="submit" class="btn rounded-pill text-white bg-danger">
