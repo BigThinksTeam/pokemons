@@ -16,9 +16,9 @@
             @csrf
             <div class="d-flex flex-column border-danger">
                 <span>Email:</span>
-                <input class="form-control my-3" name="email" type="email">
+                <input class="form-control my-3" name="email" type="email" placeholder="Type Email">
                 <span>Password:</span>
-                <input class="form-control" name="password" type="password">
+                <input class="form-control" name="password" type="password" placeholder="Type Password">
             </div>
             <div class="d-flex justify-content-center my-2">
                 <button type="submit" class="btn rounded-pill text-white bg-danger">

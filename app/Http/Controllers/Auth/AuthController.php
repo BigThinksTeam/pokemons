@@ -25,7 +25,7 @@ class AuthController extends Controller
             return view('pokemons');
         } else {
             $request->session()->flash('error', 'this credentials not match');
-            return view('Login');
+            return view('Auth.login');
         }
     }
 
