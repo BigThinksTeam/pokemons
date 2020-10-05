@@ -3,12 +3,12 @@
 @section('content')
     <div class="d-flex flex-column justify-content-center align-items-center p-5">
         @if(Session::get('error') !== null)
-            <div class="alert bg-fifth text-white font-weight-bold">
+            <div class="alert bg-danger text-white font-weight-bold">
                 {{Session::get('error')}}
             </div>
         @endif
         @if(Session::get('success') !== null)
-            <div class="alert bg-gradient-success font-weight-bold">
+            <div class="alert bg-success font-weight-bold">
                 {{Session::get('success')}}
             </div>
         @endif
