@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use MongoDB\Driver\Session;
 
 class AuthController extends Controller
 {
@@ -20,11 +21,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (\Auth::attempt($credentials, true)) {
+            $request->session()->flash('success', 'Login Success');
             return view('pokemons');
         } else {
-            return response()->json([
-                'errors' => ['errors' => "Credentials not match"],
-            ], 422);
+            $request->session()->flash('message_error', 'this credentials not match');
         }
     }
 
