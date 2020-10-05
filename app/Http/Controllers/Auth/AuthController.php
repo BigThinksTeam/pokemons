@@ -48,6 +48,11 @@ class AuthController extends Controller
         \DB::beginTransaction();
 
         try {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|unique:users',
+                'password' => 'required|min:8',
+            ]);
             $user = new User($request->all());
             $user->save();
 
@@ -57,8 +62,7 @@ class AuthController extends Controller
             $request->session()->flash('success', 'User created successfully');
             return  view('pokemons');
         } catch (\Exception $e){
-            dd($e);
-            $request->session()->flash('error');
+            $request->session()->flash('error', $e);
             return view('Auth.register');
         }
 
