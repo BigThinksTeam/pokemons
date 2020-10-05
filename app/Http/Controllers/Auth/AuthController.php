@@ -24,7 +24,8 @@ class AuthController extends Controller
             $request->session()->flash('success', 'Login Success');
             return view('pokemons');
         } else {
-            $request->session()->flash('message_error', 'this credentials not match');
+            $request->session()->flash('error', 'this credentials not match');
+            return view('Login');
         }
     }
 
