@@ -43,16 +43,11 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function register(Request $request)
+    public function register(RegisterSave $request)
     {
         \DB::beginTransaction();
 
         try {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|unique:users',
-                'password' => 'required|min:8',
-            ]);
             $user = new User($request->all());
             $user->save();
 
@@ -62,6 +57,7 @@ class AuthController extends Controller
             $request->session()->flash('success', 'User created successfully');
             return  view('pokemons');
         } catch (\Exception $e){
+            \DB::rollback();
             $request->session()->flash('error', $e);
             return view('Auth.register');
         }
