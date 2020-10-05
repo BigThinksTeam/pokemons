@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,9 +24,9 @@ class RegisterSave extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required',
+            'email' => 'bail|required|email|unique:users,email',
+            'password' => 'bail|required|min:6',
         ];
     }
 

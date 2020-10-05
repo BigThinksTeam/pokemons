@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RegisterSave;
+use App\Http\Request\RegisterSave;
+
 
 class AuthController extends Controller
 {
@@ -45,22 +46,12 @@ class AuthController extends Controller
      */
     public function register(RegisterSave $request)
     {
-        \DB::beginTransaction();
+        $user = new User($request->all());
+        $user->save();
+        \DB::commit();
 
-        try {
-            $user = new User($request->all());
-            $user->save();
+        \Auth::login($user, true);
 
-            \Auth::login($user, true);
-
-            \DB::commit();
-            $request->session()->flash('success', 'User created successfully');
-            return  view('pokemons');
-        } catch (\Exception $e){
-            \DB::rollback();
-            $request->session()->flash('error', $e);
-            return view('Auth.register');
-        }
-
+        return  view('pokemons');
     }
 }

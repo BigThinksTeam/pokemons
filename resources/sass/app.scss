@@ -8,3 +8,13 @@
     color: white;
     overflow: hidden;
 }
+
+.login, .register{
+    background-image: url(/images/background.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 992px;
+    form{
+        width: 25rem;
+    }
+}
