@@ -57,7 +57,8 @@ class AuthController extends Controller
             $request->session()->flash('success', 'User created successfully');
             return  view('pokemons');
         } catch (\Exception $e){
-            $request->session()->flash('error', $e);
+            dd($e);
+            $request->session()->flash('error');
             return view('Auth.register');
         }
 
