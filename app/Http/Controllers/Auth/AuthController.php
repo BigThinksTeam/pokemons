@@ -45,11 +45,21 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $user = new User($request->all());
-        $user->save();
+        \DB::beginTransaction();
 
-        \Auth::login($user, true);
+        try {
+            $user = new User($request->all());
+            $user->save();
 
-        return  view('pokemons');
+            \Auth::login($user, true);
+
+            \DB::commit();
+            $request->session()->flash('success', 'User created successfully');
+            return  view('pokemons');
+        } catch (\Exception $e){
+            $request->session()->flash('error', $e);
+            return view('Auth.register');
+        }
+
     }
 }
